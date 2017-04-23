@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 
-const SimpleTable = (addNewRow) => (
+const SimpleTable = ({ addNewRow }) => (
   <Table>
     <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
       <TableRow>

@@ -7,12 +7,18 @@ const App = (props) => {
   const { addNewRow } = props;
 
   return <MuiThemeProvider>
-    <SimpleTable addNewRow={addNewRow} />
+  <div>
+    />
+
+    <SimpleTable
+      addNewRow={addNewRow}
+    />
+    </div>
   </MuiThemeProvider>
 };
 
 App.propTypes = {
-    addNewRow: PropTypes.func.isRequired,
+  addNewRow: PropTypes.func.isRequired,
 };
 
 export default App;
