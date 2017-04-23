@@ -6,18 +6,18 @@ import { compose } from 'react-komposer';
 import App from './App.jsx';
 
 const composer = ({}, onData) => {
-    const projectHandler = Meteor.subscribe('rows');
+  const projectHandler = Meteor.subscribe('rows');
 console.log(projectHandler);
-    if (projectHandler.ready()) {
-        const tableData = TableData;
+  if (projectHandler.ready()) {
+    const tableData = TableData;
 console.log(tableData);
-        onData(null, {});
-    }
-
     onData(null, {});
+  }
+
+  onData(null, {});
 };
 
 export default compose(
-    composer,
-    FullPageLoader,
+  composer,
+  FullPageLoader,
 )(App);
