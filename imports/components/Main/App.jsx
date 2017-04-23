@@ -1,43 +1,18 @@
-import React, { Component } from 'react';
-import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+import React, { PropTypes } from 'react';
+
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import SimpleTable from './SimpleTable.jsx';
 
-const App = () => (
-  <MuiThemeProvider>
-    <Table>
-      <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
-        <TableRow>
-          <TableHeaderColumn>ID</TableHeaderColumn>
-          <TableHeaderColumn>Name</TableHeaderColumn>
-          <TableHeaderColumn>Status</TableHeaderColumn>
-        </TableRow>
-      </TableHeader>
-      <TableBody displayRowCheckbox={false}>
-        <TableRow>
-          <TableRowColumn>1</TableRowColumn>
-          <TableRowColumn>John Smith</TableRowColumn>
-          <TableRowColumn>Employed</TableRowColumn>
-        </TableRow>
-        <TableRow>
-          <TableRowColumn>2</TableRowColumn>
-          <TableRowColumn>Randal White</TableRowColumn>
-          <TableRowColumn>Unemployed</TableRowColumn>
-        </TableRow>
-        <TableRow>
-          <TableRowColumn>3</TableRowColumn>
-          <TableRowColumn>Stephanie Sanders</TableRowColumn>
-          <TableRowColumn>Employed</TableRowColumn>
-        </TableRow>
-        <TableRow>
-          <TableRowColumn>4</TableRowColumn>
-          <TableRowColumn>Steve Brown</TableRowColumn>
-          <TableRowColumn>Employed</TableRowColumn>
-        </TableRow>
-      </TableBody>
-    </Table>
+const App = (props) => {
+  const { addNewRow } = props;
+
+  return <MuiThemeProvider>
+    <SimpleTable addNewRow={addNewRow} />
   </MuiThemeProvider>
-);
+};
 
-App.propTypes = {};
+App.propTypes = {
+    addNewRow: PropTypes.func.isRequired,
+};
 
 export default App;
