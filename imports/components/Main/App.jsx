@@ -46,6 +46,7 @@ class App extends React.Component {
           <AddDialog
             open={showAddRowDialog}
             onClose={this.hideDialog}
+            addNewRow={addNewRow}
           />
         </div>
       </MuiThemeProvider>
