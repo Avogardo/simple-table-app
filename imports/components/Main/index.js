@@ -7,7 +7,7 @@ import {
   actions as tableActions
 } from '/imports/api/tableData';
 
-import App from './App.jsx';
+import Main from './Main.jsx';
 
 
 const composer = (props, onData) => {
@@ -29,4 +29,4 @@ console.log(projectHandler);
 export default compose(
   composer,
   FullPageLoader,
-)(App);
+)(Main);

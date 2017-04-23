@@ -1,15 +1,14 @@
 import React, { PropTypes } from 'react';
 
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
 import SimpleTable from './SimpleTable.jsx';
 import TableAppBar from './TableAppBar.jsx';
 import AddDialog from './AddDialog.jsx';
 
-import injectTapEventPlugin from 'react-tap-event-plugin';
-injectTapEventPlugin();
 
 
-class App extends React.Component {
+
+class Main extends React.Component {
   constructor(props) {
     super(props);
     this.showAddRowDialog = this.showAddRowDialog.bind(this);
@@ -33,7 +32,6 @@ class App extends React.Component {
     const { showAddRowDialog } = this.state;
 
     return (
-      <MuiThemeProvider>
         <div>
           <TableAppBar
             addRow={this.showAddRowDialog}
@@ -49,13 +47,12 @@ class App extends React.Component {
             addNewRow={addNewRow}
           />
         </div>
-      </MuiThemeProvider>
     );
   }
 };
 
-App.propTypes = {
+Main.propTypes = {
   addNewRow: PropTypes.func.isRequired,
 };
 
-export default App;
+export default Main;
