@@ -1,5 +1,13 @@
 import React, { PropTypes } from 'react';
-import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+import {
+  Table,
+  TableBody,
+  TableHeader,
+  TableHeaderColumn,
+  TableRow,
+  TableRowColumn
+} from 'material-ui/Table';
+
 
 const SimpleTable = ({ addNewRow }) => (
   <Table>

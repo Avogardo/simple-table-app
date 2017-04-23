@@ -1,23 +1,22 @@
 import React, { PropTypes } from 'react';
 import {
-    RaisedButton,
-    Toolbar,
-    ToolbarGroup,
+  AppBar,
+  IconButton,
+  NavigationClose,
+  FlatButton,
 } from 'material-ui';
 
-import AppBar from 'material-ui/AppBar';
-import IconButton from 'material-ui/IconButton';
-import NavigationClose from 'material-ui/svg-icons/navigation/close';
-import FlatButton from 'material-ui/FlatButton';
 
-const TableAppBar = () =>
+const TableAppBar = ({addRow}) =>
   <AppBar
     showMenuIconButton={false}
     title="Simple Table"
-    iconElementRight={<FlatButton label="Add row" />}
+    iconElementRight={<FlatButton label="Add row" onTouchTap={addRow} />}
   />
 ;
 
-TableAppBar.propTypes = {};
+TableAppBar.propTypes = {
+  addRow: PropTypes.func.isRequired,
+};
 
 export default TableAppBar;

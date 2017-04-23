@@ -5,10 +5,9 @@ import { compose } from 'react-komposer';
 
 import App from './App.jsx';
 
+
 const composer = ({}, onData) => {
   const projectHandler = Meteor.subscribe('rows');
-
-
 
   onData(null, {
     addNewRow: tableActions.addNewRow,
