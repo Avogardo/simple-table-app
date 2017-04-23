@@ -11,19 +11,10 @@ import Main from './Main.jsx';
 
 
 const composer = (props, onData) => {
-  const projectHandler = Meteor.subscribe('rows');
-console.log(projectHandler);
-
-  if (projectHandler.ready()) {
-    console.log('ready');
-
-    const rows = TableData.find({}).fetch();
-    console.log(rows);
-
     onData(null, {
       addNewRow: tableActions.addNewRow,
+      TableData,
     });
-  }
 };
 
 export default compose(
