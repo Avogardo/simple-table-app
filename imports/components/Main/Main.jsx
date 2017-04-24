@@ -63,6 +63,7 @@ class Main extends TrackerReact(React.Component) {
 Main.propTypes = {
   addNewRow: PropTypes.func.isRequired,
   deleteRow: PropTypes.func.isRequired,
+  onUpdate: PropTypes.func.isRequired,
 };
 
 export default Main;
