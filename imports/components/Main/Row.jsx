@@ -40,7 +40,7 @@ const Row = ({
       <FlatButton
         label="Update row"
         primary
-        onTouchTap={updateRow}
+        onTouchTap={e => updateRow(e, id)}
       /> <br />
       <FlatButton
         label="Remove row"

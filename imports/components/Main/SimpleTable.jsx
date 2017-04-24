@@ -27,6 +27,7 @@ class SimpleTable extends React.Component {
       openErrorSuccessBar: false,
       errorMessage: '',
       showUpdateRowDialog: false,
+      rowId: '',
     };
   }
 
@@ -44,8 +45,11 @@ class SimpleTable extends React.Component {
     });
   }
 
-  showUpdateRowDialog() {
-    this.setState({ showUpdateRowDialog: true });
+  showUpdateRowDialog(e, id) {
+    this.setState({
+      showUpdateRowDialog: true,
+      rowId: id,
+    });
   }
 
   hideDialog() {
@@ -59,7 +63,10 @@ class SimpleTable extends React.Component {
       onUpdate,
     } = this.props;
 
-    const { errorMessage, showUpdateRowDialog } = this.state;
+    const { errorMessage,
+      showUpdateRowDialog,
+      rowId
+    } = this.state;
 
     return ( <div>
         <Table>
@@ -107,6 +114,7 @@ class SimpleTable extends React.Component {
           open={showUpdateRowDialog}
           onClose={this.hideDialog}
           onUpdate={onUpdate}
+          id={rowId}
         />
       </div>
     )

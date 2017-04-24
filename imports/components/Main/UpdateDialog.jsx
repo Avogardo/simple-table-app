@@ -27,8 +27,10 @@ class UpdateDialog extends React.Component {
     e.preventDefault();
 
     const {
+      id,
       addNewRow,
-      onClose
+      onClose,
+      onUpdate,
     } = this.props;
 
     const {
@@ -38,7 +40,7 @@ class UpdateDialog extends React.Component {
       dateTo,
     } = this.state;
 
-    addNewRow(name, surname, dateFrom, dateTo, (err) => {
+    onUpdate(id, name, surname, dateFrom, dateTo, (err) => {
       if(err) {
           this.setState({
             errorMessage: err.reason,
@@ -145,6 +147,7 @@ UpdateDialog.propTypes = {
   open: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   onUpdate: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
 };
 
 export default UpdateDialog;
