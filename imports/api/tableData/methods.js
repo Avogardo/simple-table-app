@@ -8,7 +8,7 @@ export const addRow = new ValidatedMethod({
   validate: TableDataSchema.validator({ clean: true }),
   run({ name, surname, dateFrom, dateTo }) {
 
-    return TableData.insert({ name, surname, dateFrom, dateTo });
+    //return TableData.insert({ name, surname, dateFrom, dateTo });
 
     throw new Meteor.Error(
       'something-went-wrong',

@@ -36,7 +36,11 @@ class AddDialog extends React.Component {
       dateTo,
     } = this.state;
 
-    addNewRow(name, surname, dateFrom, dateTo);
+    addNewRow(name, surname, dateFrom, dateTo, (err) => {
+      if(err) {
+        console.log(err.reason);
+      }
+    });
 
     this.setState({
       openSnackBar: true,
