@@ -31,3 +31,23 @@ export const removeRow = new ValidatedMethod({
     );
   },
 });
+
+export const updateRow = new ValidatedMethod({
+  name: 'row.update',
+  validate: UpdateSchema.validator({ clean: true }),
+  run({ id, name, surname, dateFrom, dateTo }) {
+    return TableData.update(id, {
+      $set: {
+        name: name,
+        surname: surname,
+        dateFrom: dateFrom,
+        dateTo: dateTo,
+      },
+    });
+
+    throw new Meteor.Error(
+      'something-went-wrong',
+      'Something went wrong, because error',
+    );
+  },
+});
