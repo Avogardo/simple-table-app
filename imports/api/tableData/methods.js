@@ -4,6 +4,7 @@ import { TableData } from './TableData.js';
 import {
   TableDataSchema,
   RemoveSchema,
+  UpdateSchema,
 } from './schema.js';
 
 export const addRow = new ValidatedMethod({

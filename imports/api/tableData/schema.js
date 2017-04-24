@@ -21,7 +21,26 @@ const RemoveSchema = new SimpleSchema({
   },
 });
 
+const UpdateSchema = new SimpleSchema({
+  id: {
+    type: String,
+  },
+  name: {
+    type: String,
+  },
+  surname: {
+    type: String,
+  },
+  dateFrom: {
+    type: Date,
+  },
+  dateTo: {
+    type: Date,
+  },
+});
+
 export {
   TableDataSchema,
   RemoveSchema,
+  UpdateSchema,
 };
