@@ -16,6 +16,10 @@ const onSubmit = (id, deleteRow, showRemoveErrorSnackbar, showRemoveSuccessSnack
   });
 }
 
+const updateRow = (id) => {
+  console.log(id)
+}
+
 const Row = ({
   id,
   name,
@@ -35,6 +39,7 @@ const Row = ({
       <FlatButton
         label="Update row"
         primary
+        onTouchTap={e => updateRow(id)}
       /> <br />
       <FlatButton
         label="Remove row"

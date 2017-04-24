@@ -1,17 +1,16 @@
 import React, { PropTypes } from 'react';
+
 import {
+  Snackbar,
   Table,
   TableBody,
   TableHeader,
   TableHeaderColumn,
   TableRow,
   TableRowColumn,
-} from 'material-ui/Table';
-
-import {
-  Snackbar,
 } from 'material-ui';
 
+import { FullPageLoader } from '/imports/components/Loaders';
 import Row from './Row.jsx';
 
 class SimpleTable extends React.Component {
@@ -61,7 +60,7 @@ class SimpleTable extends React.Component {
           </TableRow>
         </TableHeader>
         <TableBody displayRowCheckbox={false}>
-          {rows.map(row =>
+          {rows ? rows.map(row =>
               <Row
                 key={row._id}
                 id={row._id}
@@ -73,7 +72,7 @@ class SimpleTable extends React.Component {
                 showRemoveErrorSnackbar={this.showRemoveErrorSnackbar}
                 showRemoveSuccessSnackbar={this.showRemoveSuccessSnackbar}
               />,
-            )
+            ) : FullPageLoader()
           }
         </TableBody>
       </Table>
