@@ -29,6 +29,7 @@ const Row = ({
   deleteRow,
   showRemoveErrorSnackbar,
   showRemoveSuccessSnackbar,
+  updateRow,
 }) => (
   <TableRow key={id}>
     <TableRowColumn>{name}</TableRowColumn>
@@ -39,7 +40,7 @@ const Row = ({
       <FlatButton
         label="Update row"
         primary
-        onTouchTap={e => updateRow(id)}
+        onTouchTap={updateRow}
       /> <br />
       <FlatButton
         label="Remove row"
@@ -59,6 +60,7 @@ Row.propTypes = {
   deleteRow: PropTypes.func.isRequired,
   showRemoveErrorSnackbar: PropTypes.func.isRequired,
   showRemoveSuccessSnackbar: PropTypes.func.isRequired,
+  updateRow: PropTypes.func.isRequired,
 };
 
 export default Row;

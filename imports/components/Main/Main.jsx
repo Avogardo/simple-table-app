@@ -34,6 +34,7 @@ class Main extends TrackerReact(React.Component) {
       addNewRow,
       TableData,
       deleteRow,
+      onUpdate,
     } = this.props;
 
     const { showAddRowDialog } = this.state;
@@ -48,6 +49,7 @@ class Main extends TrackerReact(React.Component) {
         <SimpleTable
           deleteRow={deleteRow}
           rows={rows}
+          onUpdate={onUpdate}
         />
 
         <AddDialog
