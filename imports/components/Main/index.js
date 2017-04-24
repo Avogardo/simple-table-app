@@ -11,10 +11,11 @@ import Main from './Main.jsx';
 
 
 const composer = (props, onData) => {
-    onData(null, {
-      addNewRow: tableActions.addNewRow,
-      TableData,
-    });
+  onData(null, {
+    addNewRow: tableActions.addNewRow,
+    deleteRow: tableActions.deleteRow,
+    TableData,
+  });
 };
 
 export default compose(

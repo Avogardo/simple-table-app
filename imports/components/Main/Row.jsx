@@ -2,10 +2,19 @@ import React, { PropTypes } from 'react';
 import {
   TableRow,
   TableRowColumn,
-} from 'material-ui/Table';
-import {
   FlatButton,
 } from 'material-ui';
+
+
+const onSubmit = (id, deleteRow, showRemoveErrorSnackbar, showRemoveSuccessSnackbar) => {
+  deleteRow(id, err => {
+    if(err) {
+      showRemoveErrorSnackbar(err);
+    } else {
+      showRemoveSuccessSnackbar();
+    }
+  });
+}
 
 const Row = ({
   id,
@@ -13,6 +22,9 @@ const Row = ({
   surname,
   dateFrom,
   dateTo,
+  deleteRow,
+  showRemoveErrorSnackbar,
+  showRemoveSuccessSnackbar,
 }) => (
   <TableRow key={id}>
     <TableRowColumn>{name}</TableRowColumn>
@@ -27,6 +39,7 @@ const Row = ({
       <FlatButton
         label="Remove row"
         secondary
+        onTouchTap={e => onSubmit(id, deleteRow, showRemoveErrorSnackbar, showRemoveSuccessSnackbar)}
       />
     </TableRowColumn>
   </TableRow>
@@ -38,6 +51,9 @@ Row.propTypes = {
   surname: PropTypes.string.isRequired,
   dateFrom: PropTypes.instanceOf(Date).isRequired,
   dateTo: PropTypes.instanceOf(Date).isRequired,
+  deleteRow: PropTypes.func.isRequired,
+  showRemoveErrorSnackbar: PropTypes.func.isRequired,
+  showRemoveSuccessSnackbar: PropTypes.func.isRequired,
 };
 
 export default Row;

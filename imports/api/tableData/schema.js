@@ -15,4 +15,13 @@ const TableDataSchema = new SimpleSchema({
   },
 });
 
-export { TableDataSchema };
+const RemoveSchema = new SimpleSchema({
+  id: {
+    type: String,
+  },
+});
+
+export {
+  TableDataSchema,
+  RemoveSchema,
+};
