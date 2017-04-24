@@ -40,19 +40,13 @@ class UpdateDialog extends React.Component {
       dateTo,
     } = this.state;
 
-    onUpdate(id, name, surname, dateFrom, dateTo, (err) => {
-      if(err) {
-          this.setState({
-            errorMessage: err.reason,
-          });
-      } else {
-        this.setState({
-          errorMessage: '',
-          openSnackBar: true,
-        });
-        onClose();
-      }
+    onUpdate(id, name, surname, dateFrom, dateTo);
+
+    this.setState({
+      errorMessage: '',
+      openSnackBar: true,
     });
+    onClose();
   }
 
   onChangeName(e) {
@@ -85,7 +79,10 @@ class UpdateDialog extends React.Component {
       onClose,
     } = this.props;
 
-    const { errorMessage } = this.state;
+    const {
+      errorMessage,
+      openSnackBar,
+    } = this.state;
 
     const actions = [
         <FlatButton
@@ -99,7 +96,7 @@ class UpdateDialog extends React.Component {
         />,
     ];
 
-    return (
+    return ( <div>
         <Dialog
           title="Update row"
           actions={actions}
@@ -135,6 +132,13 @@ class UpdateDialog extends React.Component {
             ''
           }
         </Dialog>
+
+        <Snackbar
+          open={openSnackBar}
+          message="Row has been updated!"
+          autoHideDuration={4000}
+        />
+      </div>
     );
   }
 }
