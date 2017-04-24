@@ -21,7 +21,8 @@ const SimpleTable = ({
       <TableRow>
         <TableHeaderColumn>ID</TableHeaderColumn>
         <TableHeaderColumn>Name</TableHeaderColumn>
-        <TableHeaderColumn>Status</TableHeaderColumn>
+        <TableHeaderColumn>Date from</TableHeaderColumn>
+        <TableHeaderColumn>Date to</TableHeaderColumn>
       </TableRow>
     </TableHeader>
     <TableBody displayRowCheckbox={false}>

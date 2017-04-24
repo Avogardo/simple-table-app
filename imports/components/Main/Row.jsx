@@ -1,9 +1,5 @@
 import React, { PropTypes } from 'react';
 import {
-  Table,
-  TableBody,
-  TableHeader,
-  TableHeaderColumn,
   TableRow,
   TableRowColumn,
 } from 'material-ui/Table';
@@ -15,12 +11,16 @@ const Row = ({
   surname,
   dateFrom,
   dateTo,
-}) => (
-  <TableRow key={id}>
+}) => {
+  console.log(dateTo.toDateString());
+
+  return <TableRow key={id}>
     <TableRowColumn>{name}</TableRowColumn>
     <TableRowColumn>{surname}</TableRowColumn>
+    <TableRowColumn>{dateFrom.toDateString()}</TableRowColumn>
+    <TableRowColumn>{dateTo.toDateString()}</TableRowColumn>
   </TableRow>
-);
+};
 
 Row.propTypes = {
   id: PropTypes.string.isRequired,
