@@ -30,7 +30,8 @@ class UpdateDialog extends React.Component {
       id,
       addNewRow,
       onClose,
-      onUpdate,
+      updateThisRow,
+      error,
     } = this.props;
 
     const {
@@ -38,14 +39,34 @@ class UpdateDialog extends React.Component {
       surname,
       dateFrom,
       dateTo,
+      errorMessage,
     } = this.state;
 
-    onUpdate(id, name, surname, dateFrom, dateTo);
+    updateThisRow(id, name, surname, dateFrom, dateTo, (err) => {
+      if(err) {
+          this.setState({
+            errorMessage: err.reason,
+          });
+      } else {
+        this.setState({
+          errorMessage: '',
+          openSnackBar: true,
+        });
+        onClose();
+      }
+    });
+  }
+
+  onClose(e) {
+    e.preventDefault();
+    const {
+      onClose,
+    } = this.props;
 
     this.setState({
       errorMessage: '',
-      openSnackBar: true,
     });
+
     onClose();
   }
 
@@ -87,7 +108,7 @@ class UpdateDialog extends React.Component {
     const actions = [
         <FlatButton
           label="Cancel"
-          onTouchTap={onClose}
+          onTouchTap={e => this.onClose(e)}
         />,
         <FlatButton
           label="Update"
@@ -150,7 +171,7 @@ UpdateDialog.defaultProps = {
 UpdateDialog.propTypes = {
   open: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
-  onUpdate: PropTypes.func.isRequired,
+  updateThisRow: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
 };
 

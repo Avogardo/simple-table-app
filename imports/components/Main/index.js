@@ -11,25 +11,10 @@ import Main from './Main.jsx';
 
 
 const composer = (props, onData) => {
-  const updateThisRow = tableActions.updateThisRow;
-
-  const onUpdate = (id, name, surname, dateFrom, dateTo) => {
-    updateThisRow(id, name, surname, dateFrom, dateTo, err => {
-      if(err) {
-        onData(null, {
-          addNewRow: tableActions.addNewRow,
-          deleteRow: tableActions.deleteRow,
-          TableData,
-          err,
-        });
-      }
-    });
-  }
-
   onData(null, {
     addNewRow: tableActions.addNewRow,
     deleteRow: tableActions.deleteRow,
-    onUpdate,
+    updateThisRow: tableActions.updateThisRow,
     TableData,
   });
 };

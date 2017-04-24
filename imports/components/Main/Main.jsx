@@ -34,7 +34,7 @@ class Main extends TrackerReact(React.Component) {
       addNewRow,
       TableData,
       deleteRow,
-      onUpdate,
+      updateThisRow,
     } = this.props;
 
     const { showAddRowDialog } = this.state;
@@ -49,7 +49,7 @@ class Main extends TrackerReact(React.Component) {
         <SimpleTable
           deleteRow={deleteRow}
           rows={rows}
-          onUpdate={onUpdate}
+          updateThisRow={updateThisRow}
         />
 
         <AddDialog
@@ -65,7 +65,7 @@ class Main extends TrackerReact(React.Component) {
 Main.propTypes = {
   addNewRow: PropTypes.func.isRequired,
   deleteRow: PropTypes.func.isRequired,
-  onUpdate: PropTypes.func.isRequired,
+  updateThisRow: PropTypes.func.isRequired,
 };
 
 export default Main;

@@ -60,7 +60,8 @@ class SimpleTable extends React.Component {
     const {
       deleteRow,
       rows,
-      onUpdate,
+      updateThisRow,
+      updateError,
     } = this.props;
 
     const { errorMessage,
@@ -113,8 +114,9 @@ class SimpleTable extends React.Component {
         <UpdateDialog
           open={showUpdateRowDialog}
           onClose={this.hideDialog}
-          onUpdate={onUpdate}
+          updateThisRow={updateThisRow}
           id={rowId}
+          updateError={updateError}
         />
       </div>
     )
@@ -124,7 +126,7 @@ class SimpleTable extends React.Component {
 SimpleTable.propTypes = {
   deleteRow: PropTypes.func.isRequired,
   rows: PropTypes.array.isRequired,
-  onUpdate: PropTypes.func.isRequired,
+  updateThisRow: PropTypes.func.isRequired,
 };
 
 export default SimpleTable;
