@@ -53,6 +53,19 @@ class AddDialog extends React.Component {
     });
   }
 
+  onClose(e) {
+    e.preventDefault();
+    const {
+      onClose,
+    } = this.props;
+
+    this.setState({
+      errorMessage: '',
+    });
+
+    onClose();
+  }
+
   onChangeName(e) {
     this.setState({
       name: e.target.value,
@@ -78,17 +91,14 @@ class AddDialog extends React.Component {
   }
 
   render() {
-    const {
-      open,
-      onClose,
-    } = this.props;
+    const { open } = this.props;
 
     const { errorMessage } = this.state;
 
     const actions = [
         <FlatButton
           label="Cancel"
-          onTouchTap={onClose}
+          onTouchTap={e => this.onClose(e)}
         />,
         <FlatButton
           label="Add"

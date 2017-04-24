@@ -95,10 +95,7 @@ class UpdateDialog extends React.Component {
   }
 
   render() {
-    const {
-      open,
-      onClose,
-    } = this.props;
+    const { open } = this.props;
 
     const {
       errorMessage,
