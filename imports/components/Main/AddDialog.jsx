@@ -5,6 +5,7 @@ import {
   TextField,
   DatePicker,
   Snackbar,
+  CardText,
 } from 'material-ui';
 
 
@@ -18,6 +19,7 @@ class AddDialog extends React.Component {
       dateFrom: new Date(),
       dateTo: new Date(),
       openSnackBar: false,
+      errorMessage: '',
     };
   }
 
@@ -38,14 +40,17 @@ class AddDialog extends React.Component {
 
     addNewRow(name, surname, dateFrom, dateTo, (err) => {
       if(err) {
-        console.log(err.reason);
+          this.setState({
+            errorMessage: err.reason,
+          });
+      } else {
+        this.setState({
+          errorMessage: '',
+          openSnackBar: true,
+        });
+        onClose();
       }
     });
-
-    this.setState({
-      openSnackBar: true,
-    });
-    onClose();
   }
 
   onChangeName(e) {
@@ -77,6 +82,8 @@ class AddDialog extends React.Component {
       open,
       onClose,
     } = this.props;
+
+    const { errorMessage } = this.state;
 
     const actions = [
         <FlatButton
@@ -117,6 +124,15 @@ class AddDialog extends React.Component {
             mode="landscape"
             onChange={(nullValue, e) => this.onChangeDateTo(nullValue, e)}
           />
+          {errorMessage ?
+            <CardText
+              color="red"
+            >
+              {errorMessage}
+            </CardText>
+            :
+            ''
+          }
         </Dialog>
 
         <Snackbar

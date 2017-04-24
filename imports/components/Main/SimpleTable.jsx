@@ -13,10 +13,7 @@ import Row from './Row.jsx';
 const SimpleTable = ({
   addNewRow,
   rows,
-}) => {
-  console.log(rows);
-
-  return <Table>
+}) => ( <Table>
     <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
       <TableRow>
         <TableHeaderColumn>Name</TableHeaderColumn>
@@ -40,7 +37,7 @@ const SimpleTable = ({
       }
     </TableBody>
   </Table>
-};
+);
 
 SimpleTable.propTypes = {
   addNewRow: PropTypes.func.isRequired,
