@@ -19,10 +19,11 @@ const SimpleTable = ({
   return <Table>
     <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
       <TableRow>
-        <TableHeaderColumn>ID</TableHeaderColumn>
         <TableHeaderColumn>Name</TableHeaderColumn>
+        <TableHeaderColumn>Surname</TableHeaderColumn>
         <TableHeaderColumn>Date from</TableHeaderColumn>
         <TableHeaderColumn>Date to</TableHeaderColumn>
+        <TableHeaderColumn>Action</TableHeaderColumn>
       </TableRow>
     </TableHeader>
     <TableBody displayRowCheckbox={false}>
