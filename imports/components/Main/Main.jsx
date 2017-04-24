@@ -33,10 +33,7 @@ class Main extends TrackerReact(React.Component) {
     const { addNewRow, TableData } = this.props;
     const { showAddRowDialog } = this.state;
 
-
-
-const rows = TableData.find({}).fetch();
-    console.log(rows);
+    const rows = TableData.find({}).fetch();
 
     return (
         <div>
@@ -46,6 +43,7 @@ const rows = TableData.find({}).fetch();
 
           <SimpleTable
             addNewRow={addNewRow}
+            rows={rows}
           />
 
           <AddDialog

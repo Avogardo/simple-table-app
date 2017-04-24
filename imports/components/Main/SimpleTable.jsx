@@ -5,12 +5,18 @@ import {
   TableHeader,
   TableHeaderColumn,
   TableRow,
-  TableRowColumn
+  TableRowColumn,
 } from 'material-ui/Table';
 
+import Row from './Row.jsx';
 
-const SimpleTable = ({ addNewRow }) => (
-  <Table>
+const SimpleTable = ({
+  addNewRow,
+  rows,
+}) => {
+  console.log(rows);
+
+  return <Table>
     <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
       <TableRow>
         <TableHeaderColumn>ID</TableHeaderColumn>
@@ -19,32 +25,24 @@ const SimpleTable = ({ addNewRow }) => (
       </TableRow>
     </TableHeader>
     <TableBody displayRowCheckbox={false}>
-      <TableRow>
-        <TableRowColumn>1</TableRowColumn>
-        <TableRowColumn>John Smith</TableRowColumn>
-        <TableRowColumn>Employed</TableRowColumn>
-      </TableRow>
-      <TableRow>
-        <TableRowColumn>2</TableRowColumn>
-        <TableRowColumn>Randal White</TableRowColumn>
-        <TableRowColumn>Unemployed</TableRowColumn>
-      </TableRow>
-      <TableRow>
-        <TableRowColumn>3</TableRowColumn>
-        <TableRowColumn>Stephanie Sanders</TableRowColumn>
-        <TableRowColumn>Employed</TableRowColumn>
-      </TableRow>
-      <TableRow>
-        <TableRowColumn>4</TableRowColumn>
-        <TableRowColumn>Steve Brown</TableRowColumn>
-        <TableRowColumn>Employed</TableRowColumn>
-      </TableRow>
+      {rows.map(row =>
+          <Row
+            key={row._id}
+            id={row._id}
+            name={row.name}
+            surname={row.surname}
+            dateFrom={row.dateFrom}
+            dateTo={row.dateTo}
+          />,
+        )
+      }
     </TableBody>
   </Table>
-);
+};
 
 SimpleTable.propTypes = {
   addNewRow: PropTypes.func.isRequired,
+  rows: PropTypes.array.isRequired,
 };
 
 export default SimpleTable;
