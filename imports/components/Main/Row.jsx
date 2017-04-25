@@ -16,10 +16,6 @@ const onSubmit = (id, deleteRow, showRemoveErrorSnackbar, showRemoveSuccessSnack
   });
 }
 
-const updateRow = (id) => {
-  console.log(id)
-}
-
 const Row = ({
   id,
   name,

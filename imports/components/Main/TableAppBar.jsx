@@ -1,8 +1,6 @@
 import React, { PropTypes } from 'react';
 import {
   AppBar,
-  IconButton,
-  NavigationClose,
   FlatButton,
 } from 'material-ui';
 

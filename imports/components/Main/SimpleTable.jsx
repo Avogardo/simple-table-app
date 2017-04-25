@@ -24,7 +24,7 @@ class SimpleTable extends React.Component {
 
     this.state = {
       openErrorSnackBar: false,
-      openErrorSuccessBar: false,
+      openSuccessSnackBar: false,
       errorMessage: '',
       showUpdateRowDialog: false,
       rowId: '',
@@ -41,7 +41,7 @@ class SimpleTable extends React.Component {
 
   showRemoveSuccessSnackbar() {
     this.setState({
-      openErrorSuccessBar: true,
+      openSuccessSnackBar: true,
       errorMessage: '',
     });
   }
@@ -68,7 +68,7 @@ class SimpleTable extends React.Component {
 
   handleRequestClose() {
     this.setState({
-      openErrorSuccessBar: false,
+      openSuccessSnackBar: false,
       openErrorSnackBar: false,
     });
   };
@@ -86,7 +86,7 @@ class SimpleTable extends React.Component {
       showUpdateRowDialog,
       rowId,
       openErrorSnackBar,
-      openErrorSuccessBar,
+      openSuccessSnackBar,
       row,
     } = this.state;
 
@@ -129,7 +129,7 @@ class SimpleTable extends React.Component {
           />
 
           <Snackbar
-            open={openErrorSuccessBar}
+            open={openSuccessSnackBar}
             message="Row has been removed successfuly"
             autoHideDuration={4000}
             onRequestClose={this.handleRequestClose}
@@ -146,7 +146,7 @@ class SimpleTable extends React.Component {
         </div>
       );
     } else {
-      return <div>Loading</div>
+      return FullPageLoader()
     }
   }
 };

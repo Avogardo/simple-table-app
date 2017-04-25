@@ -22,11 +22,15 @@ class Main extends TrackerReact(React.Component) {
   }
 
   showAddRowDialog() {
-    this.setState({ showAddRowDialog: true });
+    this.setState({
+      showAddRowDialog: true,
+    });
   }
 
   hideDialog() {
-    this.setState({ showAddRowDialog: false });
+    this.setState({
+      showAddRowDialog: false,
+    });
   }
 
   render() {
