@@ -29,6 +29,7 @@ class SimpleTable extends React.Component {
       errorMessage: '',
       showUpdateRowDialog: false,
       rowId: '',
+      row: {},
     };
   }
 
@@ -47,9 +48,18 @@ class SimpleTable extends React.Component {
   }
 
   showUpdateRowDialog(e, id) {
+    const {
+      rows,
+    } = this.props;
+
+    const row = rows.find(row =>
+      row._id === id
+    );
+
     this.setState({
       showUpdateRowDialog: true,
       rowId: id,
+      row: row,
     });
   }
 
@@ -77,62 +87,68 @@ class SimpleTable extends React.Component {
       rowId,
       openErrorSnackBar,
       openErrorSuccessBar,
+      row,
     } = this.state;
 
-    return ( <div>
-        <Table>
-          <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
-            <TableRow>
-              <TableHeaderColumn>Name</TableHeaderColumn>
-              <TableHeaderColumn>Surname</TableHeaderColumn>
-              <TableHeaderColumn>Date from</TableHeaderColumn>
-              <TableHeaderColumn>Date to</TableHeaderColumn>
-              <TableHeaderColumn>Action</TableHeaderColumn>
-            </TableRow>
-          </TableHeader>
-          <TableBody displayRowCheckbox={false}>
-            {rows ? rows.map(row =>
-                <Row
-                  key={row._id}
-                  id={row._id}
-                  name={row.name}
-                  surname={row.surname}
-                  dateFrom={row.dateFrom}
-                  dateTo={row.dateTo}
-                  deleteRow={deleteRow}
-                  showRemoveErrorSnackbar={this.showRemoveErrorSnackbar}
-                  showRemoveSuccessSnackbar={this.showRemoveSuccessSnackbar}
-                  updateRow={this.showUpdateRowDialog}
-                />,
-              ) : FullPageLoader()
-            }
-          </TableBody>
-        </Table>
+    if(typeof rows[0] !== 'undefined') {
+      return ( <div>
+          <Table>
+            <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
+              <TableRow>
+                <TableHeaderColumn>Name</TableHeaderColumn>
+                <TableHeaderColumn>Surname</TableHeaderColumn>
+                <TableHeaderColumn>Date from</TableHeaderColumn>
+                <TableHeaderColumn>Date to</TableHeaderColumn>
+                <TableHeaderColumn>Action</TableHeaderColumn>
+              </TableRow>
+            </TableHeader>
+            <TableBody displayRowCheckbox={false}>
+              {rows ? rows.map(row =>
+                  <Row
+                    key={row._id}
+                    id={row._id}
+                    name={row.name}
+                    surname={row.surname}
+                    dateFrom={row.dateFrom}
+                    dateTo={row.dateTo}
+                    deleteRow={deleteRow}
+                    showRemoveErrorSnackbar={this.showRemoveErrorSnackbar}
+                    showRemoveSuccessSnackbar={this.showRemoveSuccessSnackbar}
+                    updateRow={this.showUpdateRowDialog}
+                  />,
+                ) : FullPageLoader()
+              }
+            </TableBody>
+          </Table>
 
-        <Snackbar
-          open={openErrorSnackBar}
-          message={errorMessage}
-          autoHideDuration={4000}
-          onRequestClose={this.handleRequestClose}
-        />
+          <Snackbar
+            open={openErrorSnackBar}
+            message={errorMessage}
+            autoHideDuration={4000}
+            onRequestClose={this.handleRequestClose}
+          />
 
-        <Snackbar
-          open={openErrorSuccessBar}
-          message="Row has been removed successfuly"
-          autoHideDuration={4000}
-          onRequestClose={this.handleRequestClose}
-        />
+          <Snackbar
+            open={openErrorSuccessBar}
+            message="Row has been removed successfuly"
+            autoHideDuration={4000}
+            onRequestClose={this.handleRequestClose}
+          />
 
-        <UpdateDialog
-          open={showUpdateRowDialog}
-          onClose={this.hideDialog}
-          updateThisRow={updateThisRow}
-          id={rowId}
-          updateError={updateError}
-          rows={rows}
-        />
-      </div>
-    )
+          <UpdateDialog
+            open={showUpdateRowDialog}
+            onClose={this.hideDialog}
+            updateThisRow={updateThisRow}
+            id={rowId}
+            updateError={updateError}
+            rows={rows}
+            row={row}
+          />
+        </div>
+      );
+    } else {
+      return <div>Loading</div>
+    }
   }
 };
 

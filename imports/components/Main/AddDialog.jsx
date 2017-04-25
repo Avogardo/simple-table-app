@@ -29,7 +29,7 @@ class AddDialog extends React.Component {
 
     const {
       addNewRow,
-      onClose
+      onClose,
     } = this.props;
 
     const {

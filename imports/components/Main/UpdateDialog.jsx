@@ -43,15 +43,19 @@ class UpdateDialog extends React.Component {
       errorMessage,
     } = this.state;
 
-    updateThisRow(id, name, surname, dateFrom, dateTo, (err) => {
+    updateThisRow(id, name, surname, dateFrom, dateTo, err => {
       if(err) {
-          this.setState({
-            errorMessage: err.reason,
-          });
+        this.setState({
+          errorMessage: err.reason,
+          name: '',
+          surname: '',
+        });
       } else {
         this.setState({
           errorMessage: '',
           openUpdateSnackBar: true,
+          name: '',
+          surname: '',
         });
         onClose();
       }
@@ -66,8 +70,9 @@ class UpdateDialog extends React.Component {
 
     this.setState({
       errorMessage: '',
+      name: '',
+      surname: '',
     });
-
     onClose();
   }
 
@@ -106,6 +111,7 @@ class UpdateDialog extends React.Component {
       open,
       rows,
       id,
+      row,
     } = this.props;
 
     const {
@@ -115,9 +121,7 @@ class UpdateDialog extends React.Component {
       dateTo,
     } = this.state;
 
-    const row = rows.find(row =>
-      row._id === id
-    );
+console.log(row);
 
     const actions = [
         <FlatButton
@@ -140,26 +144,26 @@ class UpdateDialog extends React.Component {
           <TextField
             hintText="Name"
             onChange={e => this.onChangeName(e)}
-            defaultValue={row? row.name : ''}
+            defaultValue={row.name}
           />
           <TextField
             hintText="Surname"
             onChange={e => this.onChangeSurname(e)}
-            defaultValue={row? row.surname : ''}
+            defaultValue={row.surname}
           />
           <DatePicker
             hintText="Date from"
             container="inline"
             mode="landscape"
             onChange={(nullValue, e) => this.onChangeDateFrom(nullValue, e)}
-            defaultDate={row? row.dateFrom : dateFrom}
+            defaultDate={row.dateFrom}
           />
           <DatePicker
             hintText="Date to"
             container="inline"
             mode="landscape"
             onChange={(nullValue, e) => this.onChangeDateTo(nullValue, e)}
-            defaultDate={row? row.dateTo : dateTo}
+            defaultDate={row.dateTo}
           />
           {errorMessage ?
             <CardText
@@ -193,6 +197,7 @@ UpdateDialog.propTypes = {
   updateThisRow: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
   rows: PropTypes.array.isRequired,
+  //row:
 };
 
 export default UpdateDialog;
