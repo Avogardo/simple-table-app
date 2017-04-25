@@ -16,6 +16,7 @@ const composer = (props, onData) => {
     deleteRow: tableActions.deleteRow,
     updateThisRow: tableActions.updateThisRow,
     TableData,
+    FullPageLoader,
   });
 };
 

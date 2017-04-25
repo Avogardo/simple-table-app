@@ -35,6 +35,7 @@ class Main extends TrackerReact(React.Component) {
       TableData,
       deleteRow,
       updateThisRow,
+      FullPageLoader,
     } = this.props;
 
     const { showAddRowDialog } = this.state;
@@ -50,6 +51,7 @@ class Main extends TrackerReact(React.Component) {
           deleteRow={deleteRow}
           rows={rows}
           updateThisRow={updateThisRow}
+          FullPageLoader={FullPageLoader}
         />
 
         <AddDialog
@@ -66,6 +68,7 @@ Main.propTypes = {
   addNewRow: PropTypes.func.isRequired,
   deleteRow: PropTypes.func.isRequired,
   updateThisRow: PropTypes.func.isRequired,
+  FullPageLoader: PropTypes.func.isRequired,
 };
 
 export default Main;

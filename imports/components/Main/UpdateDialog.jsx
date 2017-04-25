@@ -111,26 +111,26 @@ class UpdateDialog extends React.Component {
           <TextField
             hintText="Name"
             defaultValue={row.name}
-            ref={(input) => { this.nameInput = input; }}
+            ref={input => { this.nameInput = input; }}
           />
           <TextField
             hintText="Surname"
             defaultValue={row.surname}
-            ref={(input) => { this.surnameInput = input; }}
+            ref={input => { this.surnameInput = input; }}
           />
           <DatePicker
             hintText="Date from"
             container="inline"
             mode="landscape"
             defaultDate={row.dateFrom}
-            ref={(input) => { this.dateFromInput = input; }}
+            ref={input => { this.dateFromInput = input; }}
           />
           <DatePicker
             hintText="Date to"
             container="inline"
             mode="landscape"
             defaultDate={row.dateTo}
-            ref={(input) => { this.dateToInput = input; }}
+            ref={input => { this.dateToInput = input; }}
           />
           {errorMessage ?
             <CardText

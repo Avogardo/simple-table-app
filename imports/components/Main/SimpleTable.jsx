@@ -10,7 +10,6 @@ import {
   TableRowColumn,
 } from 'material-ui';
 
-import { FullPageLoader } from '/imports/components/Loaders';
 import Row from './Row.jsx';
 import UpdateDialog from './UpdateDialog.jsx';
 
@@ -80,6 +79,7 @@ class SimpleTable extends React.Component {
       rows,
       updateThisRow,
       updateError,
+      FullPageLoader,
     } = this.props;
 
     const { errorMessage,
@@ -155,6 +155,7 @@ SimpleTable.propTypes = {
   deleteRow: PropTypes.func.isRequired,
   rows: PropTypes.array.isRequired,
   updateThisRow: PropTypes.func.isRequired,
+  FullPageLoader: PropTypes.func.isRequired,
 };
 
 export default SimpleTable;
