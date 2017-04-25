@@ -90,7 +90,7 @@ class SimpleTable extends React.Component {
       row,
     } = this.state;
 
-    if(typeof rows[0] !== 'undefined') {
+
       return ( <div>
           <Table>
             <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
@@ -140,14 +140,10 @@ class SimpleTable extends React.Component {
             onClose={this.hideDialog}
             updateThisRow={updateThisRow}
             updateError={updateError}
-            rows={rows}
             row={row}
           />
         </div>
       );
-    } else {
-      return FullPageLoader()
-    }
   }
 };
 

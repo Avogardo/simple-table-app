@@ -155,7 +155,6 @@ UpdateDialog.propTypes = {
   open: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   updateThisRow: PropTypes.func.isRequired,
-  rows: PropTypes.array.isRequired,
   row: PropTypes.shape({
     _id: PropTypes.string,
     name: PropTypes.string,
