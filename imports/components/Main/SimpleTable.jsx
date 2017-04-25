@@ -7,7 +7,6 @@ import {
   TableHeader,
   TableHeaderColumn,
   TableRow,
-  TableRowColumn,
 } from 'material-ui';
 
 import Row from './Row.jsx';
@@ -51,14 +50,14 @@ class SimpleTable extends React.Component {
       rows,
     } = this.props;
 
-    const row = rows.find(row =>
-      row._id === id
+    const row = rows.find(thisRow =>
+      thisRow._id === id,
     );
 
     this.setState({
       showUpdateRowDialog: true,
       rowId: id,
-      row: row,
+      row,
     });
   }
 
@@ -71,7 +70,7 @@ class SimpleTable extends React.Component {
       openSuccessSnackBar: false,
       openErrorSnackBar: false,
     });
-  };
+  }
 
   render() {
     const {
@@ -84,66 +83,65 @@ class SimpleTable extends React.Component {
 
     const { errorMessage,
       showUpdateRowDialog,
-      rowId,
       openErrorSnackBar,
       openSuccessSnackBar,
       row,
     } = this.state;
 
 
-      return ( <div>
-          <Table>
-            <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
-              <TableRow>
-                <TableHeaderColumn>Name</TableHeaderColumn>
-                <TableHeaderColumn>Surname</TableHeaderColumn>
-                <TableHeaderColumn>Date from</TableHeaderColumn>
-                <TableHeaderColumn>Date to</TableHeaderColumn>
-                <TableHeaderColumn>Action</TableHeaderColumn>
-              </TableRow>
-            </TableHeader>
-            <TableBody displayRowCheckbox={false}>
-              {rows ? rows.map(row =>
-                  <Row
-                    key={row._id}
-                    id={row._id}
-                    name={row.name}
-                    surname={row.surname}
-                    dateFrom={row.dateFrom}
-                    dateTo={row.dateTo}
-                    deleteRow={deleteRow}
-                    showRemoveErrorSnackbar={this.showRemoveErrorSnackbar}
-                    showRemoveSuccessSnackbar={this.showRemoveSuccessSnackbar}
-                    updateRow={this.showUpdateRowDialog}
-                  />,
-                ) : FullPageLoader()
-              }
-            </TableBody>
-          </Table>
+    return (<div>
+      <Table>
+        <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
+          <TableRow>
+            <TableHeaderColumn>Name</TableHeaderColumn>
+            <TableHeaderColumn>Surname</TableHeaderColumn>
+            <TableHeaderColumn>Date from</TableHeaderColumn>
+            <TableHeaderColumn>Date to</TableHeaderColumn>
+            <TableHeaderColumn>Action</TableHeaderColumn>
+          </TableRow>
+        </TableHeader>
+        <TableBody displayRowCheckbox={false}>
+          {rows ? rows.map(thisRow =>
+            <Row
+              key={thisRow._id}
+              id={thisRow._id}
+              name={thisRow.name}
+              surname={thisRow.surname}
+              dateFrom={thisRow.dateFrom}
+              dateTo={thisRow.dateTo}
+              deleteRow={deleteRow}
+              showRemoveErrorSnackbar={this.showRemoveErrorSnackbar}
+              showRemoveSuccessSnackbar={this.showRemoveSuccessSnackbar}
+              updateRow={this.showUpdateRowDialog}
+            />,
+            ) : FullPageLoader()
+          }
+        </TableBody>
+      </Table>
 
-          <Snackbar
-            open={openErrorSnackBar}
-            message={errorMessage}
-            autoHideDuration={4000}
-            onRequestClose={this.handleRequestClose}
-          />
+      <Snackbar
+        open={openErrorSnackBar}
+        message={errorMessage}
+        autoHideDuration={4000}
+        onRequestClose={this.handleRequestClose}
+      />
 
-          <Snackbar
-            open={openSuccessSnackBar}
-            message="Row has been removed successfuly"
-            autoHideDuration={4000}
-            onRequestClose={this.handleRequestClose}
-          />
+      <Snackbar
+        open={openSuccessSnackBar}
+        message="Row has been removed successfuly"
+        autoHideDuration={4000}
+        onRequestClose={this.handleRequestClose}
+      />
 
-          <UpdateDialog
-            open={showUpdateRowDialog}
-            onClose={this.hideDialog}
-            updateThisRow={updateThisRow}
-            updateError={updateError}
-            row={row}
-          />
-        </div>
-      );
+      <UpdateDialog
+        open={showUpdateRowDialog}
+        onClose={this.hideDialog}
+        updateThisRow={updateThisRow}
+        updateError={updateError}
+        row={row}
+      />
+    </div>
+    )
   }
 };
 
@@ -152,6 +150,7 @@ SimpleTable.propTypes = {
   rows: PropTypes.array.isRequired,
   updateThisRow: PropTypes.func.isRequired,
   FullPageLoader: PropTypes.func.isRequired,
+  updateError: PropTypes.func,
 };
 
 export default SimpleTable;

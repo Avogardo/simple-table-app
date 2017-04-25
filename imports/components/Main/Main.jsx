@@ -46,27 +46,27 @@ class Main extends TrackerReact(React.Component) {
 
     const rows = TableData.find({}).fetch();
 
-    return ( <div>
-        <TableAppBar
-          addRow={this.showAddRowDialog}
-        />
+    return (<div>
+      <TableAppBar
+        addRow={this.showAddRowDialog}
+      />
 
-        <SimpleTable
-          deleteRow={deleteRow}
-          rows={rows}
-          updateThisRow={updateThisRow}
-          FullPageLoader={FullPageLoader}
-        />
+      <SimpleTable
+        deleteRow={deleteRow}
+        rows={rows}
+        updateThisRow={updateThisRow}
+        FullPageLoader={FullPageLoader}
+      />
 
-        <AddDialog
-          open={showAddRowDialog}
-          onClose={this.hideDialog}
-          addNewRow={addNewRow}
-        />
-      </div>
+      <AddDialog
+        open={showAddRowDialog}
+        onClose={this.hideDialog}
+        addNewRow={addNewRow}
+      />
+    </div>
     );
   }
-};
+}
 
 Main.propTypes = {
   addNewRow: PropTypes.func.isRequired,

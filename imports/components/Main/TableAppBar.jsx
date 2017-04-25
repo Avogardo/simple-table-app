@@ -5,7 +5,7 @@ import {
 } from 'material-ui';
 
 
-const TableAppBar = ({addRow}) =>
+const TableAppBar = ({ addRow }) =>
   <AppBar
     showMenuIconButton={false}
     title="Simple Table"

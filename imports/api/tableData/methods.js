@@ -39,10 +39,10 @@ export const updateRow = new ValidatedMethod({
   run({ id, name, surname, dateFrom, dateTo }) {
     return TableData.update(id, {
       $set: {
-        name: name,
-        surname: surname,
-        dateFrom: dateFrom,
-        dateTo: dateTo,
+        name,
+        surname,
+        dateFrom,
+        dateTo,
       },
     });
 

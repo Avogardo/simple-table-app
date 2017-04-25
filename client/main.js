@@ -8,9 +8,9 @@ injectTapEventPlugin();
 import Main from '../imports/components/Main';
 
 const App = () => (
-    <MuiThemeProvider>
-        <Main />
-    </MuiThemeProvider>
+  <MuiThemeProvider>
+    <Main />
+  </MuiThemeProvider>
 );
 
 Meteor.startup(() => {

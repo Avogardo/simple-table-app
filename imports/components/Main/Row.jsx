@@ -7,14 +7,14 @@ import {
 
 
 const onSubmit = (id, deleteRow, showRemoveErrorSnackbar, showRemoveSuccessSnackbar) => {
-  deleteRow(id, err => {
-    if(err) {
+  deleteRow(id, (err) => {
+    if (err) {
       showRemoveErrorSnackbar(err);
     } else {
       showRemoveSuccessSnackbar();
     }
   });
-}
+};
 
 const Row = ({
   id,

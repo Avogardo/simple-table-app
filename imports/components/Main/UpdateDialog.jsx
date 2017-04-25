@@ -33,7 +33,7 @@ class UpdateDialog extends React.Component {
     const dateFrom = this.dateFromInput.getDate();
     const dateTo = this.dateToInput.getDate();
 
-    updateThisRow(id, name, surname, dateFrom, dateTo, err => {
+    updateThisRow(id, name, surname, dateFrom, dateTo, (err) => {
       if (err) {
         this.setState({
           errorMessage: err.reason,
@@ -96,53 +96,53 @@ class UpdateDialog extends React.Component {
     ];
 
     return (<div>
-        <Dialog
-          title="Update row"
-          actions={actions}
-          open={open}
-        >
-          <TextField
-            hintText="Name"
-            defaultValue={row.name}
-            ref={input => { this.nameInput = input; }}
-          />
-          <TextField
-            hintText="Surname"
-            defaultValue={row.surname}
-            ref={input => { this.surnameInput = input; }}
-          />
-          <DatePicker
-            hintText="Date from"
-            container="inline"
-            mode="landscape"
-            defaultDate={row.dateFrom}
-            ref={input => { this.dateFromInput = input; }}
-          />
-          <DatePicker
-            hintText="Date to"
-            container="inline"
-            mode="landscape"
-            defaultDate={row.dateTo}
-            ref={input => { this.dateToInput = input; }}
-          />
-          {errorMessage ?
-            <CardText
-              color="red"
-            >
-              {errorMessage}
-            </CardText>
-            :
-            ''
-          }
-        </Dialog>
-
-        <Snackbar
-          open={openUpdateSnackBar}
-          message="Row has been updated!"
-          autoHideDuration={4000}
-          onRequestClose={this.handleRequestClose}
+      <Dialog
+        title="Update row"
+        actions={actions}
+        open={open}
+      >
+        <TextField
+          hintText="Name"
+          defaultValue={row.name}
+          ref={(input) => { this.nameInput = input; }}
         />
-      </div>
+        <TextField
+          hintText="Surname"
+          defaultValue={row.surname}
+          ref={(input) => { this.surnameInput = input; }}
+        />
+        <DatePicker
+          hintText="Date from"
+          container="inline"
+          mode="landscape"
+          defaultDate={row.dateFrom}
+          ref={(input) => { this.dateFromInput = input; }}
+        />
+        <DatePicker
+          hintText="Date to"
+          container="inline"
+          mode="landscape"
+          defaultDate={row.dateTo}
+          ref={(input) => { this.dateToInput = input; }}
+        />
+        {errorMessage ?
+          <CardText
+            color="red"
+          >
+            {errorMessage}
+          </CardText>
+          :
+          ''
+        }
+      </Dialog>
+
+      <Snackbar
+        open={openUpdateSnackBar}
+        message="Row has been updated!"
+        autoHideDuration={4000}
+        onRequestClose={this.handleRequestClose}
+      />
+    </div>
     );
   }
 }
