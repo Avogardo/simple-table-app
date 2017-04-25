@@ -12,13 +12,14 @@ import {
 class UpdateDialog extends React.Component {
   constructor(props) {
     super(props);
+    this.handleRequestClose = this.handleRequestClose.bind(this);
 
     this.state = {
       name: '',
       surname: '',
       dateFrom: new Date(),
       dateTo: new Date(),
-      openSnackBar: false,
+      openUpdateSnackBar: false,
       errorMessage: '',
     };
   }
@@ -50,7 +51,7 @@ class UpdateDialog extends React.Component {
       } else {
         this.setState({
           errorMessage: '',
-          openSnackBar: true,
+          openUpdateSnackBar: true,
         });
         onClose();
       }
@@ -94,6 +95,12 @@ class UpdateDialog extends React.Component {
     });
   }
 
+  handleRequestClose() {
+    this.setState({
+      openUpdateSnackBar: false,
+    });
+  };
+
   render() {
     const {
       open,
@@ -103,7 +110,9 @@ class UpdateDialog extends React.Component {
 
     const {
       errorMessage,
-      openSnackBar,
+      openUpdateSnackBar,
+      dateFrom,
+      dateTo,
     } = this.state;
 
     const row = rows.find(row =>
@@ -143,14 +152,14 @@ class UpdateDialog extends React.Component {
             container="inline"
             mode="landscape"
             onChange={(nullValue, e) => this.onChangeDateFrom(nullValue, e)}
-            defaultDate={row? row.dateFrom : ''}
+            defaultDate={row? row.dateFrom : dateFrom}
           />
           <DatePicker
             hintText="Date to"
             container="inline"
             mode="landscape"
             onChange={(nullValue, e) => this.onChangeDateTo(nullValue, e)}
-            defaultDate={row? row.dateTo : ''}
+            defaultDate={row? row.dateTo : dateTo}
           />
           {errorMessage ?
             <CardText
@@ -164,9 +173,10 @@ class UpdateDialog extends React.Component {
         </Dialog>
 
         <Snackbar
-          open={openSnackBar}
+          open={openUpdateSnackBar}
           message="Row has been updated!"
           autoHideDuration={4000}
+          onRequestClose={this.handleRequestClose}
         />
       </div>
     );

@@ -21,6 +21,7 @@ class SimpleTable extends React.Component {
     this.showRemoveSuccessSnackbar = this.showRemoveSuccessSnackbar.bind(this);
     this.showUpdateRowDialog = this.showUpdateRowDialog.bind(this);
     this.hideDialog = this.hideDialog.bind(this);
+    this.handleRequestClose = this.handleRequestClose.bind(this);
 
     this.state = {
       openErrorSnackBar: false,
@@ -56,6 +57,13 @@ class SimpleTable extends React.Component {
     this.setState({ showUpdateRowDialog: false });
   }
 
+  handleRequestClose() {
+    this.setState({
+      openErrorSuccessBar: false,
+      openErrorSnackBar: false,
+    });
+  };
+
   render() {
     const {
       deleteRow,
@@ -66,7 +74,9 @@ class SimpleTable extends React.Component {
 
     const { errorMessage,
       showUpdateRowDialog,
-      rowId
+      rowId,
+      openErrorSnackBar,
+      openErrorSuccessBar,
     } = this.state;
 
     return ( <div>
@@ -100,15 +110,17 @@ class SimpleTable extends React.Component {
         </Table>
 
         <Snackbar
-          open={this.state.openErrorSnackBar}
+          open={openErrorSnackBar}
           message={errorMessage}
           autoHideDuration={4000}
+          onRequestClose={this.handleRequestClose}
         />
 
         <Snackbar
-          open={this.state.openErrorSuccessBar}
+          open={openErrorSuccessBar}
           message="Row has been removed successfuly"
           autoHideDuration={4000}
+          onRequestClose={this.handleRequestClose}
         />
 
         <UpdateDialog

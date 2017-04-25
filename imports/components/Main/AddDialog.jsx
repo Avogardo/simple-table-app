@@ -12,13 +12,14 @@ import {
 class AddDialog extends React.Component {
   constructor(props) {
     super(props);
+    this.handleRequestClose = this.handleRequestClose.bind(this);
 
     this.state = {
       name: '',
       surname: '',
       dateFrom: new Date(),
       dateTo: new Date(),
-      openSnackBar: false,
+      openAddSnackBar: false,
       errorMessage: '',
     };
   }
@@ -46,7 +47,7 @@ class AddDialog extends React.Component {
       } else {
         this.setState({
           errorMessage: '',
-          openSnackBar: true,
+          openAddSnackBar: true,
         });
         onClose();
       }
@@ -90,10 +91,16 @@ class AddDialog extends React.Component {
     });
   }
 
+  handleRequestClose() {
+    this.setState({
+      openAddSnackBar: false,
+    });
+  };
+
   render() {
     const { open } = this.props;
 
-    const { errorMessage } = this.state;
+    const { errorMessage, openAddSnackBar } = this.state;
 
     const actions = [
         <FlatButton
@@ -146,9 +153,10 @@ class AddDialog extends React.Component {
         </Dialog>
 
         <Snackbar
-          open={this.state.openSnackBar}
+          open={openAddSnackBar}
           message="New row has been added!"
           autoHideDuration={4000}
+          onRequestClose={this.handleRequestClose}
         />
       </div>
     );
