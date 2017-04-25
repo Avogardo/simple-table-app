@@ -117,6 +117,7 @@ class SimpleTable extends React.Component {
           updateThisRow={updateThisRow}
           id={rowId}
           updateError={updateError}
+          rows={rows}
         />
       </div>
     )

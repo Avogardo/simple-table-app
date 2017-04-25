@@ -95,12 +95,20 @@ class UpdateDialog extends React.Component {
   }
 
   render() {
-    const { open } = this.props;
+    const {
+      open,
+      rows,
+      id,
+    } = this.props;
 
     const {
       errorMessage,
       openSnackBar,
     } = this.state;
+
+    const row = rows.find(row =>
+      row._id === id
+    );
 
     const actions = [
         <FlatButton
@@ -123,22 +131,26 @@ class UpdateDialog extends React.Component {
           <TextField
             hintText="Name"
             onChange={e => this.onChangeName(e)}
+            defaultValue={row? row.name : ''}
           />
           <TextField
             hintText="Surname"
             onChange={e => this.onChangeSurname(e)}
+            defaultValue={row? row.surname : ''}
           />
           <DatePicker
             hintText="Date from"
             container="inline"
             mode="landscape"
             onChange={(nullValue, e) => this.onChangeDateFrom(nullValue, e)}
+            defaultDate={row? row.dateFrom : ''}
           />
           <DatePicker
             hintText="Date to"
             container="inline"
             mode="landscape"
             onChange={(nullValue, e) => this.onChangeDateTo(nullValue, e)}
+            defaultDate={row? row.dateTo : ''}
           />
           {errorMessage ?
             <CardText
@@ -170,6 +182,7 @@ UpdateDialog.propTypes = {
   onClose: PropTypes.func.isRequired,
   updateThisRow: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
+  rows: PropTypes.array.isRequired,
 };
 
 export default UpdateDialog;
