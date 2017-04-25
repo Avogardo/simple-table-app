@@ -139,7 +139,6 @@ class SimpleTable extends React.Component {
             open={showUpdateRowDialog}
             onClose={this.hideDialog}
             updateThisRow={updateThisRow}
-            id={rowId}
             updateError={updateError}
             rows={rows}
             row={row}

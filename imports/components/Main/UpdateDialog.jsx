@@ -15,20 +15,15 @@ class UpdateDialog extends React.Component {
     this.handleRequestClose = this.handleRequestClose.bind(this);
 
     this.state = {
-      name: '',
-      surname: '',
-      dateFrom: new Date(),
-      dateTo: new Date(),
       openUpdateSnackBar: false,
       errorMessage: '',
     };
   }
 
-  onSubmit(e) {
+  onSubmit(e, id) {
     e.preventDefault();
 
     const {
-      id,
       addNewRow,
       onClose,
       updateThisRow,
@@ -36,12 +31,13 @@ class UpdateDialog extends React.Component {
     } = this.props;
 
     const {
-      name,
-      surname,
-      dateFrom,
-      dateTo,
       errorMessage,
     } = this.state;
+
+  const name = this.nameInput.getValue(),
+    surname = this.surnameInput.getValue(),
+    dateFrom = this.dateFromInput.getDate(),
+    dateTo = this.dateToInput.getDate();
 
     updateThisRow(id, name, surname, dateFrom, dateTo, err => {
       if(err) {
@@ -76,30 +72,6 @@ class UpdateDialog extends React.Component {
     onClose();
   }
 
-  onChangeName(e) {
-    this.setState({
-      name: e.target.value,
-    });
-  }
-
-  onChangeSurname(e) {
-    this.setState({
-      surname: e.target.value,
-    });
-  }
-
-  onChangeDateFrom(nullValue, date) {
-    this.setState({
-      dateFrom: date,
-    });
-  }
-
-  onChangeDateTo(nullValue, date) {
-    this.setState({
-      dateTo: date,
-    });
-  }
-
   handleRequestClose() {
     this.setState({
       openUpdateSnackBar: false,
@@ -110,18 +82,13 @@ class UpdateDialog extends React.Component {
     const {
       open,
       rows,
-      id,
       row,
     } = this.props;
 
     const {
       errorMessage,
       openUpdateSnackBar,
-      dateFrom,
-      dateTo,
     } = this.state;
-
-console.log(row);
 
     const actions = [
         <FlatButton
@@ -131,7 +98,7 @@ console.log(row);
         <FlatButton
           label="Update"
           primary
-          onTouchTap={e => this.onSubmit(e)}
+          onTouchTap={e => this.onSubmit(e, row._id)}
         />,
     ];
 
@@ -143,27 +110,27 @@ console.log(row);
         >
           <TextField
             hintText="Name"
-            onChange={e => this.onChangeName(e)}
             defaultValue={row.name}
+            ref={(input) => { this.nameInput = input; }}
           />
           <TextField
             hintText="Surname"
-            onChange={e => this.onChangeSurname(e)}
             defaultValue={row.surname}
+            ref={(input) => { this.surnameInput = input; }}
           />
           <DatePicker
             hintText="Date from"
             container="inline"
             mode="landscape"
-            onChange={(nullValue, e) => this.onChangeDateFrom(nullValue, e)}
             defaultDate={row.dateFrom}
+            ref={(input) => { this.dateFromInput = input; }}
           />
           <DatePicker
             hintText="Date to"
             container="inline"
             mode="landscape"
-            onChange={(nullValue, e) => this.onChangeDateTo(nullValue, e)}
             defaultDate={row.dateTo}
+            ref={(input) => { this.dateToInput = input; }}
           />
           {errorMessage ?
             <CardText
@@ -195,9 +162,14 @@ UpdateDialog.propTypes = {
   open: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   updateThisRow: PropTypes.func.isRequired,
-  id: PropTypes.string.isRequired,
   rows: PropTypes.array.isRequired,
-  //row:
+  row: PropTypes.shape({
+    _id: PropTypes.string,
+    name: PropTypes.string,
+    surname: PropTypes.string,
+    dateFrom: PropTypes.instanceOf(Date),
+    dateTo: PropTypes.instanceOf(Date),
+  }),
 };
 
 export default UpdateDialog;
