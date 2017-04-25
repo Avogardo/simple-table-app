@@ -24,23 +24,17 @@ class UpdateDialog extends React.Component {
     e.preventDefault();
 
     const {
-      addNewRow,
       onClose,
       updateThisRow,
-      error,
     } = this.props;
 
-    const {
-      errorMessage,
-    } = this.state;
-
-  const name = this.nameInput.getValue(),
-    surname = this.surnameInput.getValue(),
-    dateFrom = this.dateFromInput.getDate(),
-    dateTo = this.dateToInput.getDate();
+    const name = this.nameInput.getValue();
+    const surname = this.surnameInput.getValue();
+    const dateFrom = this.dateFromInput.getDate();
+    const dateTo = this.dateToInput.getDate();
 
     updateThisRow(id, name, surname, dateFrom, dateTo, err => {
-      if(err) {
+      if (err) {
         this.setState({
           errorMessage: err.reason,
           name: '',
@@ -76,12 +70,11 @@ class UpdateDialog extends React.Component {
     this.setState({
       openUpdateSnackBar: false,
     });
-  };
+  }
 
   render() {
     const {
       open,
-      rows,
       row,
     } = this.props;
 
@@ -91,18 +84,18 @@ class UpdateDialog extends React.Component {
     } = this.state;
 
     const actions = [
-        <FlatButton
-          label="Cancel"
-          onTouchTap={e => this.onClose(e)}
-        />,
-        <FlatButton
-          label="Update"
-          primary
-          onTouchTap={e => this.onSubmit(e, row._id)}
-        />,
+      <FlatButton
+        label="Cancel"
+        onTouchTap={e => this.onClose(e)}
+      />,
+      <FlatButton
+        label="Update"
+        primary
+        onTouchTap={e => this.onSubmit(e, row._id)}
+      />,
     ];
 
-    return ( <div>
+    return (<div>
         <Dialog
           title="Update row"
           actions={actions}
